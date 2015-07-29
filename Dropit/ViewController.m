@@ -8,15 +8,17 @@
 
 #import "ViewController.h"
 #import "DropBehavior.h"
+#import "BazierPath.h"
 
 @interface ViewController () <UIDynamicAnimatorDelegate>
-@property (weak, nonatomic) IBOutlet UIView *gameView;
+@property (weak, nonatomic) IBOutlet BazierPath *gameView;
 @property (strong, nonatomic) UIDynamicAnimator *animator;
 @property (strong, nonatomic) DropBehavior *dropBehavior;
-
+@property (strong, nonatomic) UIAttachmentBehavior *attachment;
+@property (strong, nonatomic) UIView *droppingView;
 @end
 
-static const CGSize DROP_SIZE = { 50, 50 };
+static CGSize DROP_SIZE = { 40, 40 };
 
 @implementation ViewController
 
@@ -28,6 +30,11 @@ static const CGSize DROP_SIZE = { 50, 50 };
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    DROP_SIZE = CGSizeMake(CGRectGetWidth(self.gameView.bounds)/40, CGRectGetWidth(self.gameView.bounds)/40);
 }
 
 - (UIDynamicAnimator *)animator {
@@ -93,6 +100,36 @@ static const CGSize DROP_SIZE = { 50, 50 };
     [self drop];
 }
 
+- (IBAction)pan:(UIPanGestureRecognizer *)sender {
+    
+    CGPoint gesturePoint = [sender locationInView:self.gameView];
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        [self attachDroppingViewToPoint:gesturePoint];
+    } else if (sender.state == UIGestureRecognizerStateChanged) {
+        self.attachment.anchorPoint = gesturePoint;
+        
+    } else if (sender.state == UIGestureRecognizerStateEnded) {
+        [self.animator removeBehavior:self.attachment];
+        self.gameView.path = nil;
+    }
+}
+
+- (void)attachDroppingViewToPoint:(CGPoint)anchorPoint {
+    if (self.droppingView) {
+        self.attachment = [[UIAttachmentBehavior alloc] initWithItem:self.droppingView attachedToAnchor:anchorPoint];
+        UIView *droppingView = self.droppingView;
+        __weak typeof(self) wSelf = self;
+        self.attachment.action = ^{
+            UIBezierPath *line = [[UIBezierPath alloc] init];
+            [line moveToPoint:wSelf.attachment.anchorPoint];
+            [line addLineToPoint:droppingView.center];
+            wSelf.gameView.path = line;
+        };
+        self.droppingView = nil;
+        [self.animator addBehavior:self.attachment];
+    }
+}
+
 - (void)drop {
     CGRect frame;
     frame.origin = CGPointZero;
@@ -104,6 +141,7 @@ static const CGSize DROP_SIZE = { 50, 50 };
     dropView.backgroundColor = [self randomColor];
     [self.gameView addSubview:dropView];
 
+    self.droppingView = dropView;
     [self.dropBehavior addItem:dropView];
 }
 

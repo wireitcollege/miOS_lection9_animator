@@ -15,6 +15,7 @@
 		63DDCB951B66C4CD00C7A7FB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63DDCB941B66C4CD00C7A7FB /* Images.xcassets */; };
 		63DDCB981B66C4CD00C7A7FB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63DDCB961B66C4CD00C7A7FB /* LaunchScreen.xib */; };
 		63DDCBA41B66C4CD00C7A7FB /* DropitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DDCBA31B66C4CD00C7A7FB /* DropitTests.m */; };
+		63F09C5C1B689C4400B21ECD /* BazierPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F09C5B1B689C4400B21ECD /* BazierPath.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,8 @@
 		63DDCB9D1B66C4CD00C7A7FB /* DropitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DropitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		63DDCBA21B66C4CD00C7A7FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63DDCBA31B66C4CD00C7A7FB /* DropitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DropitTests.m; sourceTree = "<group>"; };
+		63F09C5A1B689C4400B21ECD /* BazierPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BazierPath.h; sourceTree = "<group>"; };
+		63F09C5B1B689C4400B21ECD /* BazierPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BazierPath.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +91,8 @@
 				63DDCB8F1B66C4CC00C7A7FB /* ViewController.m */,
 				6311C2171B6749670013BED0 /* DropBehavior.h */,
 				6311C2181B6749670013BED0 /* DropBehavior.m */,
+				63F09C5A1B689C4400B21ECD /* BazierPath.h */,
+				63F09C5B1B689C4400B21ECD /* BazierPath.m */,
 				63DDCB911B66C4CC00C7A7FB /* Main.storyboard */,
 				63DDCB941B66C4CD00C7A7FB /* Images.xcassets */,
 				63DDCB961B66C4CD00C7A7FB /* LaunchScreen.xib */,
@@ -173,6 +178,7 @@
 				TargetAttributes = {
 					63DDCB831B66C4CC00C7A7FB = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 5L27B35HEP;
 					};
 					63DDCB9C1B66C4CD00C7A7FB = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -226,6 +232,7 @@
 			files = (
 				63DDCB901B66C4CC00C7A7FB /* ViewController.m in Sources */,
 				63DDCB8D1B66C4CC00C7A7FB /* AppDelegate.m in Sources */,
+				63F09C5C1B689C4400B21ECD /* BazierPath.m in Sources */,
 				6311C2191B6749670013BED0 /* DropBehavior.m in Sources */,
 				63DDCB8A1B66C4CC00C7A7FB /* main.m in Sources */,
 			);
@@ -349,6 +356,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Dropit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -360,6 +368,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Dropit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
